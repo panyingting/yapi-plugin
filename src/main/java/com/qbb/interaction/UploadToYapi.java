@@ -61,17 +61,21 @@ public class UploadToYapi extends AnAction {
             }
             PsiFile psiFile = e.getDataContext().getData(CommonDataKeys.PSI_FILE);
             String virtualFile = psiFile.getVirtualFile().getPath();
-            final List<ConfigDTO> collect = configs.stream()
+            List<ConfigDTO> collect = configs.stream()
                     .filter(it -> {
                         if (!it.getProjectName().equals(project.getName())) {
                             return false;
                         }
                         final String str = (File.separator + it.getProjectName() + File.separator) + (it.getModuleName().equals(it.getProjectName()) ? "" : (it.getModuleName() + File.separator));
-                        return virtualFile.contains(str);
+                        boolean ret = virtualFile.contains(str);
+                        if (!ret) {
+                            Messages.showInfoMessage(virtualFile+"："+str, "路径不匹配");
+                        }
+                        return ret;
                     }).collect(Collectors.toList());
             if (collect.isEmpty()) {
                 Messages.showErrorDialog(project.getName()+"没有找到对应的yapi配置，请在菜单 > Preferences > Other setting > YapiUpload 添加"+configs.get(0).getProjectName(), "Error");
-                return;
+                collect = configs;
             }
             final ConfigDTO configDTO = collect.get(0);
             projectToken = configDTO.getProjectToken();
