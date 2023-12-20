@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author zhangyunfan
  * @version 1.0
  * @ClassName: ConfigDTO
- * @Description: é…ç½®å®ä½“
+ * @Description: ÅäÖÃÊµÌå
  * @date 2020/12/25
  */
 public class ConfigDTO implements Serializable {

@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @description: å…¥å£
+ * @description: Èë¿Ú
  * @author: chengsheng@qbb6.com
  * @date: 2019/5/15
  */
@@ -52,11 +52,11 @@ public class UploadToYapi extends AnAction {
         String projectType = null;
         String returnClass = null;
         String attachUpload = null;
-        // è·å–é…ç½®
+        // »ñÈ¡ÅäÖÃ
         try {
             final java.util.List<ConfigDTO> configs = ServiceManager.getService(ConfigPersistence.class).getConfigs();
             if(configs == null || configs.size() == 0){
-                Messages.showErrorDialog("è¯·å…ˆå»é…ç½®ç•Œé¢é…ç½®yapié…ç½®","è·å–é…ç½®å¤±è´¥ï¼");
+                Messages.showErrorDialog("ÇëÏÈÈ¥ÅäÖÃ½çÃæÅäÖÃyapiÅäÖÃ","»ñÈ¡ÅäÖÃÊ§°Ü£¡");
                 return;
             }
             PsiFile psiFile = e.getDataContext().getData(CommonDataKeys.PSI_FILE);
@@ -70,7 +70,7 @@ public class UploadToYapi extends AnAction {
                         return virtualFile.contains(str);
                     }).collect(Collectors.toList());
             if (collect.isEmpty()) {
-                Messages.showErrorDialog("æ²¡æœ‰æ‰¾åˆ°å¯¹åº”çš„yapié…ç½®ï¼Œè¯·åœ¨èœå• > Preferences > Other setting > YapiUpload æ·»åŠ ", "Error");
+                Messages.showErrorDialog(project.getName()+"Ã»ÓĞÕÒµ½¶ÔÓ¦µÄyapiÅäÖÃ£¬ÇëÔÚ²Ëµ¥ > Preferences > Other setting > YapiUpload Ìí¼Ó"+configs.get(0).getProjectName(), "Error");
                 return;
             }
             final ConfigDTO configDTO = collect.get(0);
@@ -79,17 +79,17 @@ public class UploadToYapi extends AnAction {
             yapiUrl = configDTO.getYapiUrl();
             projectType = configDTO.getProjectType();
         } catch (Exception e2) {
-            Messages.showErrorDialog("è·å–é…ç½®å¤±è´¥ï¼Œå¼‚å¸¸:  " + e2.getMessage(),"è·å–é…ç½®å¤±è´¥ï¼");
+            Messages.showErrorDialog("»ñÈ¡ÅäÖÃÊ§°Ü£¬Òì³£:  " + e2.getMessage(),"»ñÈ¡ÅäÖÃÊ§°Ü£¡");
             return;
         }
-//        // é…ç½®æ ¡éªŒ
+//        // ÅäÖÃĞ£Ñé
 //        if (Strings.isNullOrEmpty(projectToken) || Strings.isNullOrEmpty(projectId) || Strings.isNullOrEmpty(yapiUrl) || Strings.isNullOrEmpty(projectType)) {
-//            Messages.showErrorDialog("è¯·åœ¨é¡¹ç›®çš„.ideaç›®å½•ä¸‹çš„misc.xmlä¸­é…ç½®[projectToken,projectId,yapiUrl,projectType] " ,"è·å–é…ç½®å¤±è´¥ï¼");
+//            Messages.showErrorDialog("ÇëÔÚÏîÄ¿µÄ.ideaÄ¿Â¼ÏÂµÄmisc.xmlÖĞÅäÖÃ[projectToken,projectId,yapiUrl,projectType] " ,"»ñÈ¡ÅäÖÃÊ§°Ü£¡");
 //            return;
 //        }
-        // åˆ¤æ–­é¡¹ç›®ç±»å‹
+        // ÅĞ¶ÏÏîÄ¿ÀàĞÍ
         if (ProjectTypeConstant.dubbo.equals(projectType)) {
-            // è·å¾—dubboéœ€ä¸Šä¼ çš„æ¥å£åˆ—è¡¨ å‚æ•°å¯¹è±¡
+            // »ñµÃdubboĞèÉÏ´«µÄ½Ó¿ÚÁĞ±í ²ÎÊı¶ÔÏó
             ArrayList<YapiDubboDTO> yapiDubboDTOs = new BuildJsonForDubbo().actionPerformedList(e);
             if (yapiDubboDTOs != null) {
                 for (YapiDubboDTO yapiDubboDTO : yapiDubboDTOs) {
@@ -101,22 +101,22 @@ public class UploadToYapi extends AnAction {
                         yapiSaveParam.setMenu(YapiConstant.menu);
                     }
                     try {
-                        // ä¸Šä¼ 
+                        // ÉÏ´«
                         YapiResponse yapiResponse = new UploadYapi().uploadSave(yapiSaveParam, null, project.getBasePath());
                         if (yapiResponse.getErrcode() != 0) {
-                            Messages.showErrorDialog("ä¸Šä¼ å¤±è´¥ï¼å¼‚å¸¸:  " + yapiResponse.getErrmsg(),"ä¸Šä¼ å¤±è´¥ï¼");
+                            Messages.showErrorDialog("ÉÏ´«Ê§°Ü£¡Òì³£:  " + yapiResponse.getErrmsg(),"ÉÏ´«Ê§°Ü£¡");
                         } else {
                             String url = yapiUrl + "/project/" + projectId + "/interface/api/cat_" + yapiResponse.getCatId();
                             this.setClipboard(url);
-                            Messages.showInfoMessage("ä¸Šä¼ æˆåŠŸï¼æ¥å£æ–‡æ¡£urlåœ°å€:  " + url,"ä¸Šä¼ æˆåŠŸï¼");
+                            Messages.showInfoMessage("ÉÏ´«³É¹¦£¡½Ó¿ÚÎÄµµurlµØÖ·:  " + url,"ÉÏ´«³É¹¦£¡");
                         }
                     } catch (Exception e1) {
-                        Messages.showErrorDialog("ä¸Šä¼ å¤±è´¥ï¼å¼‚å¸¸:  " + e1,"ä¸Šä¼ å¤±è´¥ï¼");
+                        Messages.showErrorDialog("ÉÏ´«Ê§°Ü£¡Òì³£:  " + e1,"ÉÏ´«Ê§°Ü£¡");
                     }
                 }
             }
         } else if (ProjectTypeConstant.api.equals(projectType)) {
-            //è·å¾—api éœ€ä¸Šä¼ çš„æ¥å£åˆ—è¡¨ å‚æ•°å¯¹è±¡
+            //»ñµÃapi ĞèÉÏ´«µÄ½Ó¿ÚÁĞ±í ²ÎÊı¶ÔÏó
             ArrayList<YapiApiDTO> yapiApiDTOS = new BuildJsonForYapi().actionPerformedList(e, attachUpload, returnClass);
             if (yapiApiDTOS != null) {
                 for (YapiApiDTO yapiApiDTO : yapiApiDTOS) {
@@ -131,17 +131,17 @@ public class UploadToYapi extends AnAction {
                         yapiSaveParam.setMenu(YapiConstant.menu);
                     }
                     try {
-                        // ä¸Šä¼ 
+                        // ÉÏ´«
                         YapiResponse yapiResponse = new UploadYapi().uploadSave(yapiSaveParam, attachUpload, project.getBasePath());
                         if (yapiResponse.getErrcode() != 0) {
-                            Messages.showInfoMessage("ä¸Šä¼ å¤±è´¥ï¼ŒåŸå› :  " + yapiResponse.getErrmsg(),"ä¸Šä¼ å¤±è´¥ï¼");
+                            Messages.showInfoMessage("ÉÏ´«Ê§°Ü£¬Ô­Òò:  " + yapiResponse.getErrmsg(),"ÉÏ´«Ê§°Ü£¡");
                         } else {
                             String url = yapiUrl + "/project/" + projectId + "/interface/api/cat_" + yapiResponse.getCatId();
                             this.setClipboard(url);
-                            Messages.showInfoMessage("ä¸Šä¼ æˆåŠŸï¼æ¥å£æ–‡æ¡£urlåœ°å€:  " + url,"ä¸Šä¼ æˆåŠŸï¼");
+                            Messages.showInfoMessage("ÉÏ´«³É¹¦£¡½Ó¿ÚÎÄµµurlµØÖ·:  " + url,"ÉÏ´«³É¹¦£¡");
                         }
                     } catch (Exception e1) {
-                        Messages.showErrorDialog("ä¸Šä¼ å¤±è´¥ï¼å¼‚å¸¸:  " + e1,"ä¸Šä¼ å¤±è´¥ï¼");
+                        Messages.showErrorDialog("ÉÏ´«Ê§°Ü£¡Òì³£:  " + e1,"ÉÏ´«Ê§°Ü£¡");
                     }
                 }
             }
@@ -149,18 +149,18 @@ public class UploadToYapi extends AnAction {
     }
 
     /**
-     * @description: è®¾ç½®åˆ°å‰ªåˆ‡æ¿
+     * @description: ÉèÖÃµ½¼ôÇĞ°å
      * @param: [content]
      * @return: void
      * @author: chengsheng@qbb6.com
      * @date: 2019/7/3
      */
     private void setClipboard(String content) {
-        //è·å–ç³»ç»Ÿå‰ªåˆ‡æ¿
+        //»ñÈ¡ÏµÍ³¼ôÇĞ°å
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        //æ„å»ºStringæ•°æ®ç±»å‹
+        //¹¹½¨StringÊı¾İÀàĞÍ
         StringSelection selection = new StringSelection(content);
-        //æ·»åŠ æ–‡æœ¬åˆ°ç³»ç»Ÿå‰ªåˆ‡æ¿
+        //Ìí¼ÓÎÄ±¾µ½ÏµÍ³¼ôÇĞ°å
         clipboard.setContents(selection, null);
     }
 }

@@ -1,18 +1,18 @@
 package com.qbb.constant;
 
 /**
- * 椤圭洰绫诲瀷
+ * 项目类型
  *
  * @author chengsheng@qbb6.com
  * @date 2019/1/31 5:16 PM
  */
 public interface ProjectTypeConstant {
     /**
-     * dubbo 椤圭洰
+     * dubbo 项目
      */
     String dubbo="dubbo";
     /**
-     * api 椤圭洰
+     * api 项目
      */
     String api="api";
 }

@@ -3,18 +3,18 @@ package com.qbb.dto;
 import java.io.Serializable;
 
 /**
- * 鎺ュ彛瀵硅薄
+ * 接口对象
  *
  * @author chengsheng@qbb6.com
  * @date 2019/7/28 10:17 AM
  */
 public class YapiInterfaceResponse implements Serializable{
     /**
-     * 鎻忚堪
+     * 描述
      */
     private String desc;
     /**
-     * 鍒嗙被id
+     * 分类id
      */
     private Integer catid;
 

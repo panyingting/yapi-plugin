@@ -14,7 +14,7 @@ import java.util.List;
  * @author zhangyunfan
  * @version 1.0
  * @ClassName: ConfigPersistence
- * @Description: 配置持久化
+ * @Description: ���ó־û�
  * @date 2020/12/25
  */
 @State(name = "yapiUploads", storages = {@Storage(value = "$APP_CONFIG$/yapiUploads.xml")})

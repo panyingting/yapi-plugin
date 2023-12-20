@@ -23,7 +23,7 @@ import java.util.UUID;
  * @author zhangyunfan
  * @version 1.0
  * @ClassName: ConfigComponent
- * @Description: é…ç½®ç•Œé¢
+ * @Description: ÅäÖÃ½çÃæ
  * @date 2020/12/25
  */
 public class ConfigComponent implements SearchableConfigurable {
@@ -58,12 +58,12 @@ public class ConfigComponent implements SearchableConfigurable {
         list.setLayout(new BorderLayout());
         list.setCellRenderer(new ItemComponent());
 
-        // å·¥å…·æ 
+        // ¹¤¾ßÀ¸
         ToolbarDecorator decorator = ToolbarDecorator.createDecorator(list);
         decorator.setPreferredSize(new Dimension(0, 300));
-        // æ–°å¢
+        // ĞÂÔö
         decorator.setAddAction(actionButton -> addAction());
-        // ç¼–è¾‘
+        // ±à¼­
         decorator.setEditAction(anActionButton -> editAction());
 
         return decorator.createPanel();
@@ -81,7 +81,7 @@ public class ConfigComponent implements SearchableConfigurable {
                 }
                 final ConfigDTO dto = defaultListModel.get(i);
                 if (dto.getProjectName().equals(config.getProjectName()) && dto.getModuleName().equals(config.getModuleName())) {
-                    Messages.showErrorDialog("ç¼–è¾‘å‡ºé”™äº†ï¼Œå·²æ·»åŠ è¯¥æ¨¡å—é…ç½®ï¼", "Error");
+                    Messages.showErrorDialog("±à¼­³ö´íÁË£¬ÒÑÌí¼Ó¸ÃÄ£¿éÅäÖÃ£¡", "Error");
                     return;
                 }
             }
@@ -92,7 +92,7 @@ public class ConfigComponent implements SearchableConfigurable {
                 e.printStackTrace();
             }
         } else {
-            Messages.showInfoMessage("å…³é—­", "Info");
+            Messages.showInfoMessage("¹Ø±Õ", "Info");
         }
     }
 
@@ -105,7 +105,7 @@ public class ConfigComponent implements SearchableConfigurable {
             while (elements.hasMoreElements()) {
                 final ConfigDTO dto = elements.nextElement();
                 if (dto.getProjectName().equals(config.getProjectName()) && dto.getModuleName().equals(config.getModuleName())) {
-                    Messages.showErrorDialog("æ·»åŠ å‡ºé”™äº†ï¼Œå·²æ·»åŠ è¯¥æ¨¡å—é…ç½®ï¼", "Error");
+                    Messages.showErrorDialog("Ìí¼Ó³ö´íÁË£¬ÒÑÌí¼Ó¸ÃÄ£¿éÅäÖÃ£¡", "Error");
                     return;
                 }
             }
@@ -116,7 +116,7 @@ public class ConfigComponent implements SearchableConfigurable {
                 e.printStackTrace();
             }
         } else {
-            Messages.showInfoMessage("å…³é—­", "Info");
+            Messages.showInfoMessage("¹Ø±Õ", "Info");
         }
     }
 
@@ -125,13 +125,13 @@ public class ConfigComponent implements SearchableConfigurable {
         if (configPersistence.getConfigs() == null) {
             return true;
         }
-        //å½“ç”¨æˆ·ä¿®æ”¹é…ç½®å‚æ•°åï¼Œåœ¨ç‚¹å‡»â€œOKâ€â€œApplyâ€æŒ‰é’®å‰ï¼Œæ¡†æ¶ä¼šè‡ªåŠ¨è°ƒç”¨è¯¥æ–¹æ³•ï¼Œåˆ¤æ–­æ˜¯å¦æœ‰ä¿®æ”¹ï¼Œè¿›è€Œæ§åˆ¶æŒ‰é’®â€œOKâ€â€œApplyâ€çš„æ˜¯å¦å¯ç”¨ã€‚
+        //µ±ÓÃ»§ĞŞ¸ÄÅäÖÃ²ÎÊıºó£¬ÔÚµã»÷¡°OK¡±¡°Apply¡±°´Å¥Ç°£¬¿ò¼Ü»á×Ô¶¯µ÷ÓÃ¸Ã·½·¨£¬ÅĞ¶ÏÊÇ·ñÓĞĞŞ¸Ä£¬½ø¶ø¿ØÖÆ°´Å¥¡°OK¡±¡°Apply¡±µÄÊÇ·ñ¿ÉÓÃ¡£
         return defaultListModel.size() == configPersistence.getConfigs().size();
     }
 
     @Override
     public void apply() throws ConfigurationException {
-        //ç”¨æˆ·ç‚¹å‡»â€œOKâ€æˆ–â€œApplyâ€æŒ‰é’®åä¼šè°ƒç”¨è¯¥æ–¹æ³•ï¼Œé€šå¸¸ç”¨äºå®Œæˆé…ç½®ä¿¡æ¯æŒä¹…åŒ–ã€‚
+        //ÓÃ»§µã»÷¡°OK¡±»ò¡°Apply¡±°´Å¥ºó»áµ÷ÓÃ¸Ã·½·¨£¬Í¨³£ÓÃÓÚÍê³ÉÅäÖÃĞÅÏ¢³Ö¾Ã»¯¡£
         final Enumeration<ConfigDTO> elements = defaultListModel.elements();
         List<ConfigDTO> list = new ArrayList<>();
         while (elements.hasMoreElements()) {

@@ -35,7 +35,7 @@ public class BuildJsonForDubbo{
 
 
     /**
-     * @description: æ‰¹é‡ç”Ÿæˆæ¥å£æ•°æ®
+     * @description: ÅúÁ¿Éú³É½Ó¿ÚÊı¾İ
      * @param: [e]
      * @return: java.util.ArrayList<com.qbb.dto.YapiDubboDTO>
      * @author: chengsheng@qbb6.com
@@ -61,7 +61,7 @@ public class BuildJsonForDubbo{
         if(selectedText.equals(selectedClass.getName())){
             PsiMethod[] psiMethods=selectedClass.getMethods();
             for(PsiMethod psiMethodTarget:psiMethods) {
-                //å»é™¤ç§æœ‰æ–¹æ³•
+                //È¥³ıË½ÓĞ·½·¨
                 if(!psiMethodTarget.getModifierList().hasModifierProperty("private")) {
                     YapiDubboDTO yapiDubboDTO=actionPerformed(selectedClass, psiMethodTarget, project, psiFile);
                     if(Objects.nonNull(psiMethodTarget.getDocComment())) {
@@ -76,7 +76,7 @@ public class BuildJsonForDubbo{
             }
         }else{
             PsiMethod[] psiMethods =selectedClass.getAllMethods();
-            //å¯»æ‰¾ç›®æ ‡Method
+            //Ñ°ÕÒÄ¿±êMethod
             PsiMethod psiMethodTarget=null;
             for(PsiMethod psiMethod:psiMethods){
                 if(psiMethod.getName().equals(selectedText)){
@@ -102,10 +102,10 @@ public class BuildJsonForDubbo{
     public YapiDubboDTO actionPerformed(PsiClass selectedClass,PsiMethod psiMethodTarget,Project project,PsiFile psiFile) {
         YapiDubboDTO yapiDubboDTO=new YapiDubboDTO();
         ArrayList list=new ArrayList<KV>();
-        //åˆ¤æ–­æ˜¯å¦æœ‰åŒ¹é…çš„ç›®æ ‡æ–¹æ³•
+        //ÅĞ¶ÏÊÇ·ñÓĞÆ¥ÅäµÄÄ¿±ê·½·¨
         if(psiMethodTarget!=null){
             try {
-                // è·å¾—å“åº”
+                // »ñµÃÏìÓ¦
                 yapiDubboDTO.setResponse(BuildJsonForYapi.getResponse(project,psiMethodTarget.getReturnType(), null));
             } catch (RuntimeException e1) {
                 e1.printStackTrace();
@@ -113,12 +113,12 @@ public class BuildJsonForDubbo{
             PsiParameter[] psiParameters= psiMethodTarget.getParameterList().getParameters();
             for(PsiParameter psiParameter:psiParameters){
                 if(psiParameter.getType() instanceof PsiPrimitiveType){
-                   //å¦‚æœæ˜¯åŸºæœ¬ç±»å‹
+                   //Èç¹ûÊÇ»ù±¾ÀàĞÍ
                     KV kvClass=KV.create();
                     kvClass.set(psiParameter.getType().getCanonicalText(),NormalTypes.normalTypes.get(psiParameter.getType().getPresentableText()));
                     list.add(kvClass);
                 }else if(NormalTypes.isNormalType(psiParameter.getType().getPresentableText())){
-                   //å¦‚æœæ˜¯åŒ…è£…ç±»å‹
+                   //Èç¹ûÊÇ°ü×°ÀàĞÍ
                     KV kvClass=KV.create();
                     kvClass.set(psiParameter.getType().getCanonicalText(),NormalTypes.normalTypes.get(psiParameter.getType().getPresentableText()));
                     list.add(kvClass);
@@ -201,7 +201,7 @@ public class BuildJsonForDubbo{
 
 
     /**
-     * è·å¾—å¯¹è±¡å±æ€§
+     * »ñµÃ¶ÔÏóÊôĞÔ
      * @param psiClass
      * @param project
      * @return
@@ -216,7 +216,7 @@ public class BuildJsonForDubbo{
                 }
                 PsiType type = field.getType();
                 String name = field.getName();
-                // å¦‚æœæ˜¯åŸºæœ¬ç±»å‹
+                // Èç¹ûÊÇ»ù±¾ÀàĞÍ
                 if (type instanceof PsiPrimitiveType) {
                     kv.set(name, PsiTypesUtil.getDefaultValueOfType(type));
                 } else {

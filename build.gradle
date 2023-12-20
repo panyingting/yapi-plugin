@@ -24,7 +24,7 @@ intellij {
 }
 patchPluginXml {
     sinceBuild('1')
-    untilBuild('203.*')
+    untilBuild('223.*')
 
     pluginDescription = {
         def lines = rootProject.file('README.md').readLines()

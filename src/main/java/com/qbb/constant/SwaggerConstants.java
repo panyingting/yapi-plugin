@@ -2,7 +2,7 @@ package com.qbb.constant;
 
 /**
  * @Author: lmj
- * @Description: swaggeræ³¨è§£åŒ…è·¯å¾„
+ * @Description: swagger×¢½â°üÂ·¾¶
  * @Date: Create in 21:51 2019-11-30
  **/
 public interface SwaggerConstants {

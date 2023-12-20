@@ -3,7 +3,7 @@ package com.qbb.dto;
 import java.io.Serializable;
 
 /**
- * 鍒嗙被鍒楄〃
+ * 分类列表
  *
  * @author chengsheng@qbb6.com
  * @date 2019/2/1 10:30 AM
@@ -14,15 +14,15 @@ public class YapiCatResponse implements Serializable {
      */
     private Integer _id;
     /**
-     * 鍚嶇О
+     * 名称
      */
     private String name;
     /**
-     * 椤圭洰id
+     * 项目id
      */
     private Integer project_id;
     /**
-     * 鎻忚堪
+     * 描述
      */
     private String desc;
     /**
@@ -30,7 +30,7 @@ public class YapiCatResponse implements Serializable {
      */
     private Integer uid;
     /**
-     * 鎺掑簭
+     * 排序
      */
     private Integer index;
 

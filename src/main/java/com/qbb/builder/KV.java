@@ -69,21 +69,21 @@ public class KV<K, V> extends LinkedHashMap<K, V> {
 
 
     /**
-     * key å­˜åœ¨ï¼Œå¹¶ä¸” value ä¸ä¸º null
+     * key ´æÔÚ£¬²¢ÇÒ value ²»Îª null
      */
     public boolean notNull(Object key) {
         return get(key) != null;
     }
 
     /**
-     * key ä¸å­˜åœ¨ï¼Œæˆ–è€… key å­˜åœ¨ä½† value ä¸ºnull
+     * key ²»´æÔÚ£¬»òÕß key ´æÔÚµ« value Îªnull
      */
     public boolean isNull(Object key) {
         return get(key) == null;
     }
 
     /**
-     * key å­˜åœ¨ï¼Œå¹¶ä¸” value ä¸º trueï¼Œåˆ™è¿”å› true
+     * key ´æÔÚ£¬²¢ÇÒ value Îª true£¬Ôò·µ»Ø true
      */
     public boolean isTrue(Object key) {
         Object value = get(key);
@@ -91,7 +91,7 @@ public class KV<K, V> extends LinkedHashMap<K, V> {
     }
 
     /**
-     * key å­˜åœ¨ï¼Œå¹¶ä¸” value ä¸º falseï¼Œåˆ™è¿”å› true
+     * key ´æÔÚ£¬²¢ÇÒ value Îª false£¬Ôò·µ»Ø true
      */
     public boolean isFalse(Object key) {
         Object value = get(key);

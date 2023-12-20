@@ -1,52 +1,52 @@
 package com.qbb.constant;
 
 /**
- * yapi æ¥å£
+ * yapi ½Ó¿Ú
  *
  * @author chengsheng@qbb6.com
  * @date 2019/1/31 3:29 PM
  */
 public interface YapiConstant {
     /**
-     * ç›®å½•
+     * Ä¿Â¼
      */
     String menu="tool-temp";
     /**
-     * æ–°å¢æˆ–è€…æ›´æ–°æ¥å£
+     * ĞÂÔö»òÕß¸üĞÂ½Ó¿Ú
      */
     String yapiSave="/api/interface/save";
     /**
-     * è·å–æ¥å£èœå•åˆ—è¡¨
+     * »ñÈ¡½Ó¿Ú²Ëµ¥ÁĞ±í
      */
     String yapiListMenu="/api/interface/list_menu";
     /**
-     * æ›´æ–°æ¥å£
+     * ¸üĞÂ½Ó¿Ú
      */
     String yapiUp="/api/interface/up";
     /**
-     * è·å–æ¥å£åˆ—è¡¨æ•°æ®
+     * »ñÈ¡½Ó¿ÚÁĞ±íÊı¾İ
      */
     String yapiList="/api/interface/list";
     /**
-     * æ–°å¢æ¥å£
+     * ĞÂÔö½Ó¿Ú
      */
     String yapiAdd="/api/interface/add";
     /**
-     * æ–°å¢æ¥å£åˆ†ç±»
+     * ĞÂÔö½Ó¿Ú·ÖÀà
       */
     String yapiAddCat="/api/interface/add_cat";
     /**
-     * è·å–æ¥å£æ•°æ®
+     * »ñÈ¡½Ó¿ÚÊı¾İ
      */
     String yapiGet="/api/interface/get";
 
     /**
-     * è·å–èœå•åˆ—è¡¨
+     * »ñÈ¡²Ëµ¥ÁĞ±í
      */
     String yapiCatMenu="/api/interface/getCatMenu";
 
     /**
-     * é€šè¿‡è·¯å¾„è·å¾—æ¥å£
+     * Í¨¹ıÂ·¾¶»ñµÃ½Ó¿Ú
      */
     String yapiGetByPath="/api/interface/getbypath";
 }

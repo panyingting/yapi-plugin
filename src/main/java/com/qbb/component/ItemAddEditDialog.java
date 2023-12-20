@@ -46,7 +46,7 @@ public class ItemAddEditDialog extends DialogWrapper {
         gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.insets = new Insets(10, 10, 0, 0);
 
-        final JLabel label = new JLabel("é€‰æ‹©æ¨¡å—:");
+        final JLabel label = new JLabel("Ñ¡ÔñÄ£¿é:");
         label.setAlignmentY(JComponent.LEFT_ALIGNMENT);
 
         comboBox = new JComboBox();

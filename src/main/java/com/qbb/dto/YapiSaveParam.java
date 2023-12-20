@@ -4,19 +4,19 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * yapi ä¿å­˜è¯·æ±‚å‚æ•°
+ * yapi ±£´æÇëÇó²ÎÊı
  *
  * @author chengsheng@qbb6.com
  * @date 2019/1/31 11:43 AM
  */
 public class YapiSaveParam implements Serializable{
     /**
-     * é¡¹ç›® token  å”¯ä¸€æ ‡è¯†
+     * ÏîÄ¿ token  Î¨Ò»±êÊ¶
      */
     private String token;
 
     /**
-     * è¯·æ±‚å‚æ•°
+     * ÇëÇó²ÎÊı
      */
     private List req_query;
     /**
@@ -24,94 +24,94 @@ public class YapiSaveParam implements Serializable{
      */
     private List req_headers;
     /**
-     * è¯·æ±‚å‚æ•° form ç±»å‹
+     * ÇëÇó²ÎÊı form ÀàĞÍ
      */
     private List req_body_form;
     /**
-     * æ ‡é¢˜
+     * ±êÌâ
      */
     private String title;
     /**
-     * åˆ†ç±»id
+     * ·ÖÀàid
      */
     private String  catid;
     /**
-     * è¯·æ±‚æ•°æ®ç±»å‹   raw,form,json
+     * ÇëÇóÊı¾İÀàĞÍ   raw,form,json
      */
     private String req_body_type="json";
     /**
-     * è¯·æ±‚æ•°æ®body
+     * ÇëÇóÊı¾İbody
      */
     private String req_body_other;
     /**
-     * è¯·æ±‚å‚æ•°body æ˜¯å¦ä¸ºjson_schema
+     * ÇëÇó²ÎÊıbody ÊÇ·ñÎªjson_schema
      */
     private boolean req_body_is_json_schema;
     /**
-     * è·¯å¾„
+     * Â·¾¶
      */
     private String path;
     /**
-     * çŠ¶æ€ undone,é»˜è®¤done
+     * ×´Ì¬ undone,Ä¬ÈÏdone
      */
     private String status="undone";
     /**
-     * è¿”å›å‚æ•°ç±»å‹  json
+     * ·µ»Ø²ÎÊıÀàĞÍ  json
      */
     private String res_body_type="json";
 
     /**
-     * è¿”å›å‚æ•°
+     * ·µ»Ø²ÎÊı
      */
     private String res_body;
 
     /**
-     * è¿”å›å‚æ•°æ˜¯å¦ä¸ºjson_schema
+     * ·µ»Ø²ÎÊıÊÇ·ñÎªjson_schema
      */
     private boolean res_body_is_json_schema=true;
 
     /**
-     * åˆ›å»ºçš„ç”¨æˆ·å
+     * ´´½¨µÄÓÃ»§Ãû
      */
     private Integer edit_uid=11;
     /**
-     * ç”¨æˆ·åç§°
+     * ÓÃ»§Ãû³Æ
      */
     private String username;
 
     /**
-     * é‚®ä»¶å¼€å…³
+     * ÓÊ¼ş¿ª¹Ø
      */
     private boolean switch_notice;
 
     private String message=" ";
     /**
-     * æ–‡æ¡£æè¿°
+     * ÎÄµµÃèÊö
      */
-    private String desc="<h3>è¯·è¡¥å……æè¿°</h3>";
+    private String desc="<h3>Çë²¹³äÃèÊö</h3>";
 
     /**
-     * è¯·æ±‚æ–¹å¼
+     * ÇëÇó·½Ê½
      */
     private String method="POST";
     /**
-     * è¯·æ±‚å‚æ•°
+     * ÇëÇó²ÎÊı
      */
     private List req_params;
 
 
     private String  id;
     /**
-     * é¡¹ç›®id
+     * ÏîÄ¿id
      */
     private Integer projectId;
 
     /**
-     * yapi åœ°å€
+     * yapi µØÖ·
      */
     private String yapiUrl;
     /**
-     * èœå•åç§°
+     * ²Ëµ¥Ãû³Æ
      */
     private String menu;
 

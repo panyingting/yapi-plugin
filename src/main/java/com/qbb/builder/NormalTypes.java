@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * åŸºæœ¬ç±»
+ * »ù±¾Àà
  *
  * @author chengsheng@qbb6.com
  * @date 2019/1/30 9:58 AM
@@ -27,7 +27,7 @@ public class NormalTypes {
 
     public static final Map<String,String> java2JsonTypes = new HashMap<>();
     /**
-     * æ³›å‹åˆ—è¡¨
+     * ·ºĞÍÁĞ±í
      */
     public static final List<String> genericList=new ArrayList<>();
 
@@ -136,7 +136,7 @@ public class NormalTypes {
     public static JsonObject formatMockType(String type,String exampleMock) {
         JsonObject mock = new JsonObject();
 
-        //æ”¯æŒä¼ å…¥è‡ªå®šä¹‰mock
+        //Ö§³Ö´«Èë×Ô¶¨Òåmock
         if (StringUtils.isNotEmpty(exampleMock)) {
             mock.addProperty("mock", exampleMock);
             return mock;

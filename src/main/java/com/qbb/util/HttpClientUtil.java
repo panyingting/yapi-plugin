@@ -46,7 +46,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * http client è¯·æ±‚å·¥å…·ç±»
+ * http client ÇëÇó¹¤¾ßÀà
  *
  * @author haowentao
  * @date 2018/1/26.
@@ -64,7 +64,7 @@ public class HttpClientUtil {
             .build();
 
     private static volatile  CloseableHttpClient httpclient;
-    private static CloseableHttpClient tlsClient;//TLSv1.2åè®®å¯¹åº”client
+    private static CloseableHttpClient tlsClient;//TLSv1.2Ğ­Òé¶ÔÓ¦client
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -74,7 +74,7 @@ public class HttpClientUtil {
     }
 
     /**
-     * åˆå§‹åŒ–è¿æ¥æ± 
+     * ³õÊ¼»¯Á¬½Ó³Ø
      */
     private static void init() throws Exception {
         SSLContextBuilder builder = new SSLContextBuilder();
@@ -97,7 +97,7 @@ public class HttpClientUtil {
                 .setConnectionManager(cm).setDefaultRequestConfig(requestConfig)
                 .build();
 
-        //æ”¯æŒTLSv1.2åè®®
+        //Ö§³ÖTLSv1.2Ğ­Òé
         Registry<ConnectionSocketFactory> tlsRegistry
                         = RegistryBuilder.<ConnectionSocketFactory>create().register("http",
                         PlainConnectionSocketFactory.INSTANCE).register("https",
@@ -182,7 +182,7 @@ public class HttpClientUtil {
     }
 
     /**
-     * ä»¥byteæ•°ç»„è·å–HttpPost
+     * ÒÔbyteÊı×é»ñÈ¡HttpPost
      *
      * @param content
      * @param url
@@ -207,7 +207,7 @@ public class HttpClientUtil {
     }
 
     /**
-     * ä»¥jsonè·å–HttpPost
+     * ÒÔjson»ñÈ¡HttpPost
      *
      * @param body
      * @param url
@@ -232,7 +232,7 @@ public class HttpClientUtil {
     }
 
     /**
-     * ä»¥mapè·å–HttpPost
+     * ÒÔmap»ñÈ¡HttpPost
      *
      * @param params
      * @param url
@@ -263,7 +263,7 @@ public class HttpClientUtil {
     }
 
     /**
-     * è·å–HttpGet
+     * »ñÈ¡HttpGet
      *
      * @param url
      * @param accept
@@ -285,7 +285,7 @@ public class HttpClientUtil {
     }
 
     /**
-     * æ‰§è¡Œ HttpPost è¯·æ±‚
+     * Ö´ĞĞ HttpPost ÇëÇó
      *
      * @param httpPost
      * @return
@@ -297,7 +297,7 @@ public class HttpClientUtil {
 
 
     /**
-     * æ‰§è¡Œ HttpGet è¯·æ±‚
+     * Ö´ĞĞ HttpGet ÇëÇó
      *
      * @param httpGet
      * @return
@@ -308,7 +308,7 @@ public class HttpClientUtil {
     }
 
     /**
-     * æ‰§è¡Œ tlsHttpPost è¯·æ±‚
+     * Ö´ĞĞ tlsHttpPost ÇëÇó
      *
      * @param httpPost
      * @return
@@ -319,7 +319,7 @@ public class HttpClientUtil {
     }
 
     /**
-     * æ‰§è¡Œ tlsHttpGet è¯·æ±‚
+     * Ö´ĞĞ tlsHttpGet ÇëÇó
      *
      * @param httpGet
      * @return
@@ -331,7 +331,7 @@ public class HttpClientUtil {
 
 
     /**
-     * CloseableHttpResponse è½¬byte æ•°ç»„
+     * CloseableHttpResponse ×ªbyte Êı×é
      *
      * @param response
      * @return byte[]
@@ -361,7 +361,7 @@ public class HttpClientUtil {
     }
 
     /**
-     * CloseableHttpResponse è½¬å­—ç¬¦ä¸²
+     * CloseableHttpResponse ×ª×Ö·û´®
      *
      * @param response
      * @param charset
@@ -386,7 +386,7 @@ public class HttpClientUtil {
     public static SSLContext createIgnoreVerifySSL() throws NoSuchAlgorithmException, KeyManagementException {
         SSLContext sc = SSLContext.getInstance("TLSv1.2");
 
-        // å®ç°ä¸€ä¸ªX509TrustManageræ¥å£ï¼Œç”¨äºç»•è¿‡éªŒè¯ï¼Œä¸ç”¨ä¿®æ”¹é‡Œé¢çš„æ–¹æ³•
+        // ÊµÏÖÒ»¸öX509TrustManager½Ó¿Ú£¬ÓÃÓÚÈÆ¹ıÑéÖ¤£¬²»ÓÃĞŞ¸ÄÀïÃæµÄ·½·¨
         X509TrustManager trustManager = new X509TrustManager() {
             @Override
             public void checkClientTrusted(

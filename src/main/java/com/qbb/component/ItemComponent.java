@@ -2,7 +2,6 @@ package com.qbb.component;
 
 import com.intellij.util.ui.JBUI;
 import com.qbb.dto.ConfigDTO;
-import sun.swing.DefaultLookup;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -44,12 +43,12 @@ public class ItemComponent extends JPanel implements ListCellRenderer<ConfigDTO>
         ConfigPersistence configPersistence = ConfigPersistence.getInstance();
         GridBagLayout gridBagLayout = new GridBagLayout();
         setLayout(gridBagLayout);
-        //瀹炰緥鍖栬繖涓璞＄敤鏉ュ缁勪欢杩涜绠＄悊
+        //实例化这个对象用来对组件进行管理
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.insets = new Insets(10, 10, 0, 0);
         Border border = BorderFactory.createLineBorder(Color.BLACK);
-        yapiJLabel = new JLabel("yapi鍦板潃:");
+        yapiJLabel = new JLabel("yapi地址:");
         yapiTextArea = new JTextField();
         if (isInDialog) {
             yapiTextArea.setBorder(border);
@@ -58,7 +57,7 @@ public class ItemComponent extends JPanel implements ListCellRenderer<ConfigDTO>
         yapiTextArea.setSize(10, 10);
         yapiJLabel.setAlignmentY(yapiJLabel.LEFT_ALIGNMENT);
 
-        projectTokenJLabel = new JLabel("椤圭洰Token:");
+        projectTokenJLabel = new JLabel("项目Token:");
         projectTokenTextArea = new JTextField();
         if (isInDialog) {
             projectTokenTextArea.setBorder(border);
@@ -66,7 +65,7 @@ public class ItemComponent extends JPanel implements ListCellRenderer<ConfigDTO>
         projectTokenTextArea.setFont(new Font(null, Font.PLAIN, TEXT_AREA_FONTSIZE));
         projectTokenJLabel.setAlignmentY(projectTokenJLabel.LEFT_ALIGNMENT);
 
-        projectIdJLabel = new JLabel("椤圭洰ID:");
+        projectIdJLabel = new JLabel("项目ID:");
         projectIdTextArea = new JTextField();
         if (isInDialog) {
             projectIdTextArea.setBorder(border);
@@ -74,7 +73,7 @@ public class ItemComponent extends JPanel implements ListCellRenderer<ConfigDTO>
         projectIdTextArea.setFont(new Font(null, Font.PLAIN, TEXT_AREA_FONTSIZE));
         projectIdJLabel.setAlignmentY(projectIdJLabel.LEFT_ALIGNMENT);
 
-        projectTypeJLabel = new JLabel("椤圭洰绫诲瀷:");
+        projectTypeJLabel = new JLabel("项目类型:");
         String[] select = {"api", "dubbo"};
         projectTypeComboBox = new JComboBox();
         projectTypeComboBox.setModel(new DefaultComboBoxModel(select));
@@ -89,7 +88,7 @@ public class ItemComponent extends JPanel implements ListCellRenderer<ConfigDTO>
         projectTypeTextArea.setFont(new Font(null, Font.PLAIN, TEXT_AREA_FONTSIZE));
 
         if (!isInDialog) {
-            title = new JLabel("鍝釜椤圭洰妯″潡", JLabel.CENTER);
+            title = new JLabel("哪个项目模块", JLabel.CENTER);
             title.setForeground(Color.LIGHT_GRAY);
             gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
             gridBagConstraints.fill = GridBagConstraints.BOTH;
@@ -176,15 +175,8 @@ public class ItemComponent extends JPanel implements ListCellRenderer<ConfigDTO>
         setBorder(JBUI.Borders.empty(1));
         Color bg, fg;
         JList.DropLocation dropLocation = list.getDropLocation();
-        if (dropLocation != null && !dropLocation.isInsert() && dropLocation.getIndex() == index) {
-            bg = DefaultLookup.getColor(this, ui, "List.dropCellBackground");
-            fg = DefaultLookup.getColor(this, ui, "List.dropCellForeground");
-            isSelected = true;
-        }
-        else {
-            bg = isSelected ? list.getSelectionBackground() : list.getBackground();
-            fg = isSelected ? list.getSelectionForeground() : list.getForeground();
-        }
+        bg = isSelected ? list.getSelectionBackground() : list.getBackground();
+        fg = isSelected ? list.getSelectionForeground() : list.getForeground();
         setBackground(bg);
         setForeground(fg);
         setFont(list.getFont());

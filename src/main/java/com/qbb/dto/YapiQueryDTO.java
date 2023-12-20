@@ -10,22 +10,22 @@ import java.io.Serializable;
  */
 public class YapiQueryDTO implements Serializable{
     /**
-     * 鏄惁蹇呭～
+     * 是否必填
      */
     private String required="1";
 
 
     private String _id;
     /**
-     * 鎻忚堪
+     * 描述
      */
     private String desc;
     /**
-     * 绀轰緥
+     * 示例
      */
     private String example;
     /**
-     * 鍙傛暟鍚嶅瓧
+     * 参数名字
      */
     private String  name;
 

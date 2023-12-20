@@ -17,7 +17,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * æ–‡ä»¶è§£åŽ‹
+ * ÎÄ¼þ½âÑ¹
  *
  * @author chengsheng@qbb6.com
  * @date 2019/5/6 8:16 PM
@@ -51,9 +51,9 @@ public class FileUnZipUtil {
         }
 
         /**
-         * æµäº¤æ¢æ“ä½œ
-         * @param ins è¾“å…¥æµ
-         * @param channel è¾“å‡ºæµ
+         * Á÷½»»»²Ù×÷
+         * @param ins ÊäÈëÁ÷
+         * @param channel Êä³öÁ÷
          */
         private static void transferStream(InputStream ins, FileChannel channel) {
             ByteBuffer byteBuffer = ByteBuffer.allocate(1024 * 10);
@@ -85,8 +85,8 @@ public class FileUnZipUtil {
         }
 
         /**
-         * æ‰“å°jaræ–‡ä»¶å†…å®¹ä¿¡æ¯
-         * @param file jaræ–‡ä»¶
+         * ´òÓ¡jarÎÄ¼þÄÚÈÝÐÅÏ¢
+         * @param file jarÎÄ¼þ
          */
         public static void printJarEntry(File file) {
             JarFile jfInst = null;;
@@ -102,10 +102,10 @@ public class FileUnZipUtil {
         }
 
         /**
-         * åˆ›å»ºæ–‡ä»¶
-         * @param jarEntry jarå®žä½“
-         * @param fileInst æ–‡ä»¶å®žä½“
-         * @throws IOException æŠ›å‡ºå¼‚å¸¸
+         * ´´½¨ÎÄ¼þ
+         * @param jarEntry jarÊµÌå
+         * @param fileInst ÎÄ¼þÊµÌå
+         * @throws IOException Å×³öÒì³£
          */
         public static void makeFile(JarEntry jarEntry, File fileInst) {
             if (!fileInst.exists()) {
@@ -115,7 +115,7 @@ public class FileUnZipUtil {
                     try {
                         fileInst.createNewFile();
                     } catch (IOException e) {
-                        log.error("åˆ›å»ºæ–‡ä»¶å¤±è´¥>>>".concat(fileInst.getPath()));
+                        log.error("´´½¨ÎÄ¼þÊ§°Ü>>>".concat(fileInst.getPath()));
                     }
                 }
             }

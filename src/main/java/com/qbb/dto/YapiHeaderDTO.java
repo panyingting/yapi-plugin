@@ -8,19 +8,19 @@ package com.qbb.dto;
  */
 public class YapiHeaderDTO {
     /**
-     * åç§°
+     * Ãû³Æ
      */
     private String name;
     /**
-     * å€¼
+     * Öµ
      */
     private String value;
     /**
-     * æè¿°
+     * ÃèÊö
      */
     private String desc;
     /**
-     * ç¤ºä¾‹
+     * Ê¾Àı
      */
     private String example;
 

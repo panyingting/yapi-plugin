@@ -3,18 +3,18 @@ package com.qbb.dto;
 import java.io.Serializable;
 
 /**
- * yapi dubbo å¯¹è±¡
+ * yapi dubbo ¶ÔÏó
  *
  * @author chengsheng@qbb6.com
  * @date 2019/1/31 5:36 PM
  */
 public class YapiDubboDTO implements Serializable {
     /**
-     * è·¯å¾„
+     * Â·¾¶
      */
     private String path;
     /**
-     * è¯·æ±‚å‚æ•°
+     * ÇëÇó²ÎÊı
      */
     private String params;
     /**
@@ -22,19 +22,19 @@ public class YapiDubboDTO implements Serializable {
      */
     private String title;
     /**
-     * å“åº”
+     * ÏìÓ¦
      */
     private String response;
     /**
-     * æè¿°
+     * ÃèÊö
      */
     private String desc;
     /**
-     * èœå•
+     * ²Ëµ¥
      */
     private String menu;
     /**
-     * çŠ¶æ€
+     * ×´Ì¬
      */
     private String status;
 

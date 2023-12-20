@@ -7,22 +7,22 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * æ–°å¢èœå•
+ * ĞÂÔö²Ëµ¥
  *
  * @author chengsheng@qbb6.com
  * @date 2019/2/1 10:44 AM
  */
 public class YapiCatMenuParam implements Serializable {
     /**
-     * æè¿°
+     * ÃèÊö
      */
-    private String desc="å·¥å…·ä¸Šä¼ ä¸´æ—¶æ–‡ä»¶å¤¹";
+    private String desc="¹¤¾ßÉÏ´«ÁÙÊ±ÎÄ¼ş¼Ğ";
     /**
-     * åå­—
+     * Ãû×Ö
      */
     private String name;
     /**
-     * é¡¹ç›®id
+     * ÏîÄ¿id
      */
     private Integer project_id;
     /**
@@ -30,7 +30,7 @@ public class YapiCatMenuParam implements Serializable {
      */
     private String token;
     /**
-     * çˆ¶çº§èœå•id
+     * ¸¸¼¶²Ëµ¥id
      */
     private Integer parent_id=-1;
 

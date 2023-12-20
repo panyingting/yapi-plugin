@@ -1,7 +1,7 @@
 package com.qbb.constant;
 
 /**
- * http 璇锋眰鏂瑰紡鍙傞噺
+ * http 请求方式参量
  *
  * @author chengsheng@qbb6.com
  * @date 2019/6/10 5:22 PM

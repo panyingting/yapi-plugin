@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * ä¸Šä¼ åˆ°yapi
+ * ÉÏ´«µ½yapi
  *
  * @author chengsheng@qbb6.com
  * @date 2019/1/31 11:41 AM
@@ -30,7 +30,7 @@ public class UploadYapi {
 
 
     /**
-     * @description: è°ƒç”¨ä¿å­˜æ¥å£
+     * @description: µ÷ÓÃ±£´æ½Ó¿Ú
      * @param: [yapiSaveParam, attachUpload, path]
      * @return: com.qbb.dto.YapiResponse
      * @author: chengsheng@qbb6.com
@@ -72,7 +72,7 @@ public class UploadYapi {
 
 
     /**
-     * è·å¾—httpPost
+     * »ñµÃhttpPost
      * @return
      */
     private HttpPost getHttpPost(String url, String body) {
@@ -88,7 +88,7 @@ public class UploadYapi {
     }
 
     /**
-     * @description: ä¸Šä¼ æ–‡ä»¶
+     * @description: ÉÏ´«ÎÄ¼ş
      * @param: [url, filePath]
      * @return: java.lang.String
      * @author: chengsheng@qbb6.com
@@ -116,7 +116,7 @@ public class UploadYapi {
         return null;
     }
     /**
-     * @description: è·å¾—æè¿°
+     * @description: »ñµÃÃèÊö
      * @param: [yapiSaveParam]
      * @return: com.qbb.dto.YapiResponse
      * @author: chengsheng@qbb6.com
@@ -129,9 +129,9 @@ public class UploadYapi {
             if(yapiResponse.getErrcode()==0) {
                 YapiInterfaceResponse yapiInterfaceResponse=gson.fromJson(gson.toJson(yapiResponse.getData()),YapiInterfaceResponse.class);
                 if(!Strings.isNullOrEmpty(yapiInterfaceResponse.getDesc())){
-                    //å¦‚æœåŸæ¥æè¿°ä¸ä¸ºç©ºï¼Œé‚£ä¹ˆå°±å°†å½“å‰æè¿°+ä¸Šä¸€ä¸ªç‰ˆæœ¬æè¿°çš„è‡ªå®šä¹‰éƒ¨åˆ†
-                    if(yapiInterfaceResponse.getDesc().contains("javaç±»")){
-                        yapiSaveParam.setDesc(yapiInterfaceResponse.getDesc().substring(0,yapiInterfaceResponse.getDesc().indexOf("javaç±»"))+yapiSaveParam.getDesc()+yapiInterfaceResponse.getDesc().substring(yapiInterfaceResponse.getDesc().indexOf("</pre>"),yapiInterfaceResponse.getDesc().length()));
+                    //Èç¹ûÔ­À´ÃèÊö²»Îª¿Õ£¬ÄÇÃ´¾Í½«µ±Ç°ÃèÊö+ÉÏÒ»¸ö°æ±¾ÃèÊöµÄ×Ô¶¨Òå²¿·Ö
+                    if(yapiInterfaceResponse.getDesc().contains("javaÀà")){
+                        yapiSaveParam.setDesc(yapiInterfaceResponse.getDesc().substring(0,yapiInterfaceResponse.getDesc().indexOf("javaÀà"))+yapiSaveParam.getDesc()+yapiInterfaceResponse.getDesc().substring(yapiInterfaceResponse.getDesc().indexOf("</pre>"),yapiInterfaceResponse.getDesc().length()));
                     }else{
                         yapiSaveParam.setDesc(yapiInterfaceResponse.getDesc().substring(0,yapiInterfaceResponse.getDesc().indexOf("<pre>"))+yapiSaveParam.getDesc()+yapiInterfaceResponse.getDesc().substring(yapiInterfaceResponse.getDesc().indexOf("</pre>"),yapiInterfaceResponse.getDesc().length()));
                     }
@@ -146,14 +146,14 @@ public class UploadYapi {
     }
 
     /**
-     * @description: è·å¾—åˆ†ç±»æˆ–è€…åˆ›å»ºåˆ†ç±»æˆ–è€…
+     * @description: »ñµÃ·ÖÀà»òÕß´´½¨·ÖÀà»òÕß
      * @param: [yapiSaveParam]
      * @return: com.qbb.dto.YapiResponse
      * @author: chengsheng@qbb6.com
      * @date: 2019/5/15
      */ 
     public YapiResponse getCatIdOrCreate(YapiSaveParam yapiSaveParam){
-        // å¦‚æœç¼“å­˜ä¸å­˜åœ¨ï¼Œåˆ‡è‡ªå®šä¹‰èœå•ä¸ºç©ºï¼Œåˆ™ä½¿ç”¨é»˜è®¤ç›®å½•
+        // Èç¹û»º´æ²»´æÔÚ£¬ÇĞ×Ô¶¨Òå²Ëµ¥Îª¿Õ£¬ÔòÊ¹ÓÃÄ¬ÈÏÄ¿Â¼
         if(Strings.isNullOrEmpty(yapiSaveParam.getMenu())){
             yapiSaveParam.setMenu(YapiConstant.menu);
         }
@@ -166,8 +166,8 @@ public class UploadYapi {
                 list=gson.fromJson(gson.toJson(list),new TypeToken<List<YapiCatResponse>>() {
                 }.getType());
                 String[] menus=yapiSaveParam.getMenu().split("/");
-                // å¾ªç¯å¤šçº§èœå•ï¼Œåˆ¤æ–­æ˜¯å¦å­˜åœ¨ï¼Œå¦‚æœä¸å­˜åœ¨å°±åˆ›å»º
-                //  è§£å†³å¤šçº§èœå•åˆ›å»ºé—®é¢˜
+                // Ñ­»·¶à¼¶²Ëµ¥£¬ÅĞ¶ÏÊÇ·ñ´æÔÚ£¬Èç¹û²»´æÔÚ¾Í´´½¨
+                //  ½â¾ö¶à¼¶²Ëµ¥´´½¨ÎÊÌâ
                 Integer parent_id=-1;
                 Integer now_id=null;
                 for(int i=0;i<menus.length;i++){
@@ -196,7 +196,7 @@ public class UploadYapi {
             return  new YapiResponse();
         } catch (Exception e) {
             try {
-                //å‡ºç°è¿™ç§æƒ…å†µå¯èƒ½æ˜¯yapi ç‰ˆæœ¬ä¸æ”¯æŒ
+                //³öÏÖÕâÖÖÇé¿ö¿ÉÄÜÊÇyapi °æ±¾²»Ö§³Ö
                 yapiSaveParam.setCatid(addMenu(yapiSaveParam,-1,yapiSaveParam.getMenu()).toString());
                 return new YapiResponse();
             } catch (IOException e1) {
@@ -207,7 +207,7 @@ public class UploadYapi {
 
 
     /**
-     * @description: æ–°å¢èœå•
+     * @description: ĞÂÔö²Ëµ¥
      * @param: [yapiSaveParam, parent_id]
      * @return: java.lang.Integer
      * @author: chengsheng@qbb6.com

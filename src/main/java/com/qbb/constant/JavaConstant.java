@@ -1,7 +1,7 @@
 package com.qbb.constant;
 
 /**
- * java æ³¨è§£
+ * java ×¢½â
  *
  * @author chengsheng@qbb6.com
  * @date 2019/5/18 4:49 PM

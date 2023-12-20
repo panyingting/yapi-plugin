@@ -3,26 +3,26 @@ package com.qbb.dto;
 import java.io.Serializable;
 
 /**
- * yapi è¿”å›ç»“æœ
+ * yapi ·µ»Ø½á¹û
  *
  * @author chengsheng@qbb6.com
  * @date 2019/1/31 12:08 PM
  */
 public class YapiResponse implements Serializable {
     /**
-     * çŠ¶æ€ç 
+     * ×´Ì¬Âë
      */
     private Integer errcode;
     /**
-     * çŠ¶æ€ä¿¡æ¯
+     * ×´Ì¬ĞÅÏ¢
      */
     private String errmsg;
     /**
-     * è¿”å›ç»“æœ
+     * ·µ»Ø½á¹û
      */
     private Object data;
     /**
-     * åˆ†ç±»
+     * ·ÖÀà
      */
     private String catId;
 

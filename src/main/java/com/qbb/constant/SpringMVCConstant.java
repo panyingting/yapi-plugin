@@ -1,7 +1,7 @@
 package com.qbb.constant;
 
 /**
- * Spring mvc æ³¨è§£åŒ…è·¯å¾„
+ * Spring mvc ×¢½â°üÂ·¾¶
  *
  * @author chengsheng@qbb6.com
  * @date 2019/2/11 3:57 PM

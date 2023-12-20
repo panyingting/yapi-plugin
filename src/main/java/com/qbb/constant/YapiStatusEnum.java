@@ -3,18 +3,18 @@ package com.qbb.constant;
 import com.google.common.base.Strings;
 
 /**
- * @description: æ¥å£çŠ¶æ€
+ * @description: ½Ó¿Ú×´Ì¬
  * @author: chengsheng@qbb6.com
  * @date: 2019/7/31
  */
 public enum YapiStatusEnum {
 
-    done("å·²å‘å¸ƒ"),
-    design("è®¾è®¡ä¸­"),
-    undone("å¼€å‘ä¸­"),
-    testing("å·²ææµ‹"),
-    deprecated("å·²è¿‡æ—¶"),
-    stoping("æš‚åœå‘å¸ƒ");
+    done("ÒÑ·¢²¼"),
+    design("Éè¼ÆÖĞ"),
+    undone("¿ª·¢ÖĞ"),
+    testing("ÒÑÌá²â"),
+    deprecated("ÒÑ¹ıÊ±"),
+    stoping("ÔİÍ£·¢²¼");
 
     private String message;
 

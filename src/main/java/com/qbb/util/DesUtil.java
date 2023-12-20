@@ -20,7 +20,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * æè¿°å·¥å…·,å­˜æ”¾æ ‡é¢˜ï¼Œèœå•ï¼Œæè¿°ç­‰å·¥å…·ç±»
+ * ÃèÊö¹¤¾ß,´æ·Å±êÌâ£¬²Ëµ¥£¬ÃèÊöµÈ¹¤¾ßÀà
  *
  * @author chengsheng@qbb6.com
  * @date 2019/4/30 4:13 PM
@@ -33,9 +33,9 @@ public class DesUtil {
     static final String DASH = "-";
 
     /**
-     * å»é™¤å­—ç¬¦ä¸²é¦–å°¾å‡ºç°çš„æŸä¸ªå­—ç¬¦.
-     * @param source æºå­—ç¬¦ä¸².
-     * @param element éœ€è¦å»é™¤çš„å­—ç¬¦.
+     * È¥³ı×Ö·û´®Ê×Î²³öÏÖµÄÄ³¸ö×Ö·û.
+     * @param source Ô´×Ö·û´®.
+     * @param element ĞèÒªÈ¥³ıµÄ×Ö·û.
      * @return String.
      */
     public static String trimFirstAndLastChar(String source,char element) {
@@ -57,7 +57,7 @@ public class DesUtil {
 
 
     /**
-     * @description: è·å¾—æè¿°
+     * @description: »ñµÃÃèÊö
      * @param: [psiMethodTarget]
      * @return: java.lang.String
      * @author: chengsheng@qbb6.com
@@ -77,7 +77,7 @@ public class DesUtil {
     }
 
     /**
-     * @description: é€šè¿‡paramName è·å¾—æè¿°
+     * @description: Í¨¹ıparamName »ñµÃÃèÊö
      * @param: [psiMethodTarget, paramName]
      * @return: java.lang.String
      * @author: chengsheng@qbb6.com
@@ -96,7 +96,7 @@ public class DesUtil {
     }
 
     /**
-     * @description: è·å¾—å±æ€§æ³¨é‡Š
+     * @description: »ñµÃÊôĞÔ×¢ÊÍ
      * @param: [psiDocComment]
      * @return: java.lang.String
      * @author: chengsheng@qbb6.com
@@ -112,7 +112,7 @@ public class DesUtil {
         return "";
     }
     /**
-     * @description: è·å¾—å¼•ç”¨url
+     * @description: »ñµÃÒıÓÃurl
      * @param: []
      * @return: java.lang.String
      * @author: chengsheng@qbb6.com
@@ -129,7 +129,7 @@ public class DesUtil {
     }
     
     /**
-     * @description: è·å¾—èœå•
+     * @description: »ñµÃ²Ëµ¥
      * @param: [text]
      * @return: java.lang.String
      * @author: chengsheng@qbb6.com
@@ -148,7 +148,7 @@ public class DesUtil {
     }
 
     /**
-     * è·å¾—è·¯å¾„
+     * »ñµÃÂ·¾¶
      * @param text
      * @return
      */
@@ -165,7 +165,7 @@ public class DesUtil {
     }
 
     /**
-     * @description: è·å¾—çŠ¶æ€
+     * @description: »ñµÃ×´Ì¬
      * @param: [text]
      * @return: java.lang.String
      * @author: chengsheng@qbb6.com
@@ -184,24 +184,24 @@ public class DesUtil {
     }
 
     /**
-     * @description: è·å¾—link å¤‡æ³¨
+     * @description: »ñµÃlink ±¸×¢
      * @param: [remark, project, field]
      * @return: java.lang.String
      * @author: chengsheng@qbb6.com
      * @date: 2019/5/18
      */
     public static String getLinkRemark(String remark, Project project, PsiField field){
-        // å°è¯•è·å¾—@link çš„å¸¸é‡å®šä¹‰
+        // ³¢ÊÔ»ñµÃ@link µÄ³£Á¿¶¨Òå
         if(Objects.isNull(field.getDocComment())){
             return remark;
         }
         String[] linkString=field.getDocComment().getText().split("@link");
         if(linkString.length>1){
-            //è¯´æ˜æœ‰link
+            //ËµÃ÷ÓĞlink
             String linkAddress=linkString[1].split("}")[0].trim();
             PsiClass psiClassLink= JavaPsiFacade.getInstance(project).findClass(linkAddress, GlobalSearchScope.allScope(project));
             if(Objects.isNull(psiClassLink)) {
-                //å¯èƒ½æ²¡æœ‰è·å¾—å…¨è·¯å¾„ï¼Œå°è¯•è·å¾—å…¨è·¯å¾„
+                //¿ÉÄÜÃ»ÓĞ»ñµÃÈ«Â·¾¶£¬³¢ÊÔ»ñµÃÈ«Â·¾¶
                 String[] importPaths=field.getParent().getContext().getText().split("import");
                 if(importPaths.length>1){
                     for(String importPath:importPaths){
@@ -214,14 +214,14 @@ public class DesUtil {
                     }
                 }
                 if(Objects.isNull(psiClassLink)){
-                    //å¦‚æœæ˜¯åŒåŒ…æƒ…å†µ
+                    //Èç¹ûÊÇÍ¬°üÇé¿ö
                     linkAddress= ((PsiJavaFileImpl) ((PsiClassImpl) field.getParent()).getContext()).getPackageName()+"."+linkAddress;
                     psiClassLink= JavaPsiFacade.getInstance(project).findClass(linkAddress, GlobalSearchScope.allScope(project));
                 }
-                //å¦‚æœå°äºç­‰äºä¸€ä¸ºä¸å­˜åœ¨importï¼Œä¸åšå¤„ç†
+                //Èç¹ûĞ¡ÓÚµÈÓÚÒ»Îª²»´æÔÚimport£¬²»×ö´¦Àí
             }
             if(Objects.nonNull(psiClassLink)){
-                //è¯´æ˜è·å¾—äº†link çš„class
+                //ËµÃ÷»ñµÃÁËlink µÄclass
                 PsiField[] linkFields= psiClassLink.getFields();
                 if(linkFields.length>0){
                     remark+=","+psiClassLink.getName()+"[";
@@ -230,9 +230,9 @@ public class DesUtil {
                         if(i>0){
                             remark+=",";
                         }
-                        // å…ˆè·å¾—åç§°
+                        // ÏÈ»ñµÃÃû³Æ
                         remark+=psiField.getName();
-                        // åè·å¾—value,é€šè¿‡= æ¥æˆªå–è·å¾—ï¼Œç¬¬äºŒä¸ªå€¼ï¼Œå†æˆªå–;
+                        // ºó»ñµÃvalue,Í¨¹ı= À´½ØÈ¡»ñµÃ£¬µÚ¶ş¸öÖµ£¬ÔÙ½ØÈ¡;
                         String[] splitValue = psiField.getText().split("=");
                         if(splitValue.length>1){
                             String value=splitValue[1].split(";")[0];
@@ -252,7 +252,7 @@ public class DesUtil {
 
 
     /**
-     * @description: è·å¾—ä»start å¼€å§‹ end ç»“æŸä¸­é—´çš„å†…å®¹
+     * @description: »ñµÃ´Óstart ¿ªÊ¼ end ½áÊøÖĞ¼äµÄÄÚÈİ
      * @param: [content, start, end]
      * @return: java.util.List<java.lang.String>
      * @author: chengsheng@qbb6.com
@@ -269,7 +269,7 @@ public class DesUtil {
                String linkAddress = linkstr[i].split("}")[0].trim();
                PsiClass psiClassLink = JavaPsiFacade.getInstance(project).findClass(linkAddress, GlobalSearchScope.allScope(project));
                if (Objects.isNull(psiClassLink)) {
-                   //å¯èƒ½æ²¡æœ‰è·å¾—å…¨è·¯å¾„ï¼Œå°è¯•è·å¾—å…¨è·¯å¾„
+                   //¿ÉÄÜÃ»ÓĞ»ñµÃÈ«Â·¾¶£¬³¢ÊÔ»ñµÃÈ«Â·¾¶
                    String[] importPaths = field.getParent().getContext().getText().split("import");
                    if (importPaths.length > 1) {
                        for (String importPath : importPaths) {
@@ -285,14 +285,14 @@ public class DesUtil {
                        }
                    }
                    if (Objects.isNull(psiClassLink)) {
-                       //å¦‚æœæ˜¯åŒåŒ…æƒ…å†µ
+                       //Èç¹ûÊÇÍ¬°üÇé¿ö
                        linkAddress = ((PsiJavaFileImpl) ((PsiClassImpl) field.getParent()).getContext()).getPackageName() + "." + linkAddress;
                        psiClassLink = JavaPsiFacade.getInstance(project).findClass(linkAddress, GlobalSearchScope.allScope(project));
                        if (Objects.nonNull(psiClassLink)) {
                            result.add(psiClassLink);
                        }
                    }
-                   //å¦‚æœå°äºç­‰äºä¸€ä¸ºä¸å­˜åœ¨importï¼Œä¸åšå¤„ç†
+                   //Èç¹ûĞ¡ÓÚµÈÓÚÒ»Îª²»´æÔÚimport£¬²»×ö´¦Àí
                } else {
                    result.add(psiClassLink);
                }
@@ -303,7 +303,7 @@ public class DesUtil {
     }
     
     /**
-     * @description: ç»„è£…è·¯å¾„
+     * @description: ×é×°Â·¾¶
      * @param: [path, subPath]
      * @return: void
      * @author: chengsheng@qbb6.com
@@ -318,7 +318,7 @@ public class DesUtil {
     }
 
     /**
-     * é©¼å³°è½¬åŒ–  å…¼å®¹swagger
+     * ÍÕ·å×ª»¯  ¼æÈİswagger
      *
      * @param camelCase
      * @return

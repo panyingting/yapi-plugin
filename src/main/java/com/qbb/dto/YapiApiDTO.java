@@ -12,15 +12,15 @@ import java.util.Map;
  */
 public class YapiApiDTO implements Serializable{
     /**
-     * è·¯å¾„
+     * Â·¾¶
      */
     private String path;
     /**
-     * è¯·æ±‚å‚æ•°
+     * ÇëÇó²ÎÊı
      */
     private List<YapiQueryDTO> params;
     /**
-     * å¤´ä¿¡æ¯
+     * Í·ĞÅÏ¢
      */
     private List header;
     /**
@@ -28,44 +28,44 @@ public class YapiApiDTO implements Serializable{
      */
     private String title;
     /**
-     * å“åº”
+     * ÏìÓ¦
      */
     private String response;
     /**
-     * è¯·æ±‚ä½“
+     * ÇëÇóÌå
      */
     private String requestBody;
 
     /**
-     * è¯·æ±‚æ–¹æ³•
+     * ÇëÇó·½·¨
      */
     private String method="POST";
 
     /**
-     * è¯·æ±‚ ç±»å‹ raw,form,json
+     * ÇëÇó ÀàĞÍ raw,form,json
      */
     private String req_body_type;
     /**
-     * è¯·æ±‚form
+     * ÇëÇóform
      */
     private List<Map<String,String>> req_body_form;
 
     /**
-     * æè¿°
+     * ÃèÊö
      */
     private String desc;
     /**
-     * èœå•
+     * ²Ëµ¥
      */
     private String menu;
 
     /**
-     * è¯·æ±‚å‚æ•°
+     * ÇëÇó²ÎÊı
      */
     private List req_params;
 
     /**
-     * çŠ¶æ€
+     * ×´Ì¬
      */
     private String status;
 

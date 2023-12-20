@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 /**
- * @description: æ–‡ä»¶å‹ç¼©
+ * @description: ÎÄ¼şÑ¹Ëõ
  * @author: chengsheng@qbb6.com
  * @date: 2019/5/15
  */
@@ -20,12 +20,12 @@ public class FileToZipUtil {
     private static final int BUFFER_SIZE = 2 * 1024;
 
     /**
-     * @param srcDir å‹ç¼©æ–‡ä»¶å¤¹è·¯å¾„
-     * @param outDir å‹ç¼©æ–‡ä»¶è¾“å‡ºæµ
-     * @param KeepDirStructure æ˜¯å¦ä¿ç•™åŸæ¥çš„ç›®å½•ç»“æ„,
-     * 			true:ä¿ç•™ç›®å½•ç»“æ„;
-     *			false:æ‰€æœ‰æ–‡ä»¶è·‘åˆ°å‹ç¼©åŒ…æ ¹ç›®å½•ä¸‹(æ³¨æ„ï¼šä¸ä¿ç•™ç›®å½•ç»“æ„å¯èƒ½ä¼šå‡ºç°åŒåæ–‡ä»¶,ä¼šå‹ç¼©å¤±è´¥)
-     * @throws RuntimeException å‹ç¼©å¤±è´¥ä¼šæŠ›å‡ºè¿è¡Œæ—¶å¼‚å¸¸
+     * @param srcDir Ñ¹ËõÎÄ¼ş¼ĞÂ·¾¶
+     * @param outDir Ñ¹ËõÎÄ¼şÊä³öÁ÷
+     * @param KeepDirStructure ÊÇ·ñ±£ÁôÔ­À´µÄÄ¿Â¼½á¹¹,
+     * 			true:±£ÁôÄ¿Â¼½á¹¹;
+     *			false:ËùÓĞÎÄ¼şÅÜµ½Ñ¹Ëõ°ü¸ùÄ¿Â¼ÏÂ(×¢Òâ£º²»±£ÁôÄ¿Â¼½á¹¹¿ÉÄÜ»á³öÏÖÍ¬ÃûÎÄ¼ş,»áÑ¹ËõÊ§°Ü)
+     * @throws RuntimeException Ñ¹ËõÊ§°Ü»áÅ×³öÔËĞĞÊ±Òì³£
      */
     public static void toZip(Set<String> srcDir, String outDir,
                              boolean KeepDirStructure) throws RuntimeException, Exception {
@@ -43,7 +43,7 @@ public class FileToZipUtil {
             }
             compress(sourceFileList, zos, KeepDirStructure);
             long end = System.currentTimeMillis();
-            System.out.println("å‹ç¼©å®Œæˆï¼Œè€—æ—¶ï¼š" + (end - start) + " ms");
+            System.out.println("Ñ¹ËõÍê³É£¬ºÄÊ±£º" + (end - start) + " ms");
         } catch (Exception e) {
             throw new RuntimeException("zip error from ZipUtils", e);
         } finally {
@@ -59,13 +59,13 @@ public class FileToZipUtil {
     }
 
     /**
-     * é€’å½’å‹ç¼©æ–¹æ³•
-     * @param sourceFile æºæ–‡ä»¶
-     * @param zos zipè¾“å‡ºæµ
-     * @param name å‹ç¼©åçš„åç§°
-     * @param KeepDirStructure æ˜¯å¦ä¿ç•™åŸæ¥çš„ç›®å½•ç»“æ„,
-     * 			true:ä¿ç•™ç›®å½•ç»“æ„;
-     *			false:æ‰€æœ‰æ–‡ä»¶è·‘åˆ°å‹ç¼©åŒ…æ ¹ç›®å½•ä¸‹(æ³¨æ„ï¼šä¸ä¿ç•™ç›®å½•ç»“æ„å¯èƒ½ä¼šå‡ºç°åŒåæ–‡ä»¶,ä¼šå‹ç¼©å¤±è´¥)
+     * µİ¹éÑ¹Ëõ·½·¨
+     * @param sourceFile Ô´ÎÄ¼ş
+     * @param zos zipÊä³öÁ÷
+     * @param name Ñ¹ËõºóµÄÃû³Æ
+     * @param KeepDirStructure ÊÇ·ñ±£ÁôÔ­À´µÄÄ¿Â¼½á¹¹,
+     * 			true:±£ÁôÄ¿Â¼½á¹¹;
+     *			false:ËùÓĞÎÄ¼şÅÜµ½Ñ¹Ëõ°ü¸ùÄ¿Â¼ÏÂ(×¢Òâ£º²»±£ÁôÄ¿Â¼½á¹¹¿ÉÄÜ»á³öÏÖÍ¬ÃûÎÄ¼ş,»áÑ¹ËõÊ§°Ü)
      * @throws Exception
      */
     private static void compress(File sourceFile, ZipOutputStream zos,

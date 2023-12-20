@@ -67,7 +67,7 @@ public class PsiAnnotationSearchUtil {
                 final String referenceName = referenceElement.getReferenceName();
                 if (shortName.equals(referenceName)) {
 
-                    //swaggeræ³¨è§£ä¸ºæ ‡æ³¨document æ— æ³•åˆ¤å®šisQualified
+                    //swagger×¢½âÎª±ê×¢document ÎŞ·¨ÅĞ¶¨isQualified
                     if (referenceElement.isQualified() && referenceElement instanceof SourceJavaCodeReference) {
                         String possibleFullQualifiedName = ((SourceJavaCodeReference) referenceElement).getClassNameText();
                         if (qualifiedName.equals(possibleFullQualifiedName)) {
@@ -195,7 +195,7 @@ public class PsiAnnotationSearchUtil {
 
 
     /**
-     * è·å–psiæ³¨è§£value
+     * »ñÈ¡psi×¢½âvalue
      *
      * @param psiParameter
      * @param annotationName
@@ -206,7 +206,7 @@ public class PsiAnnotationSearchUtil {
     }
 
     /**
-     * è·å–æ³¨è§£æŸä¸ªå€¼
+     * »ñÈ¡×¢½âÄ³¸öÖµ
      *
      * @param psiParameter
      * @param annotationName
