@@ -19,7 +19,7 @@ public class KV<K, V> extends LinkedHashMap<K, V> {
         return new KV().set(key, value);
     }
 
-    public static <K, V> KV create() {
+    public static <K, V> KV<K,V> create() {
         return new KV();
     }
 
@@ -28,81 +28,15 @@ public class KV<K, V> extends LinkedHashMap<K, V> {
         return this;
     }
 
-    public KV set(Map map) {
-        super.putAll(map);
-        return this;
-    }
 
     public KV set(KV KV) {
         super.putAll(KV);
         return this;
     }
 
-    public KV delete(Object key) {
-        super.remove(key);
-        return this;
-    }
-
-    public <T> T getAs(Object key) {
-        return (T) get(key);
-    }
-
-    public String getStr(Object key) {
-        return (String) get(key);
-    }
-
-    public Integer getInt(Object key) {
-        return (Integer) get(key);
-    }
-
-    public Long getLong(Object key) {
-        return (Long) get(key);
-    }
-
-    public Boolean getBoolean(Object key) {
-        return (Boolean) get(key);
-    }
-
-    public Float getFloat(Object key) {
-        return (Float) get(key);
-    }
-
-
-    /**
-     * key 存在，并且 value 不为 null
-     */
-    public boolean notNull(Object key) {
-        return get(key) != null;
-    }
-
-    /**
-     * key 不存在，或者 key 存在但 value 为null
-     */
-    public boolean isNull(Object key) {
-        return get(key) == null;
-    }
-
-    /**
-     * key 存在，并且 value 为 true，则返回 true
-     */
-    public boolean isTrue(Object key) {
-        Object value = get(key);
-        return (value instanceof Boolean && ((Boolean) value == true));
-    }
-
-    /**
-     * key 存在，并且 value 为 false，则返回 true
-     */
-    public boolean isFalse(Object key) {
-        Object value = get(key);
-        return (value instanceof Boolean && ((Boolean) value == false));
-    }
-
-    public String toJson() {
-        return new Gson().toJson(this);
-    }
-
     public String toPrettyJson() {
+        KVFieldNameProcessor kvFieldNameProcessor = new KVFieldNameProcessor();
+        kvFieldNameProcessor.process(this);
         return new GsonBuilder().setPrettyPrinting().create().toJson(this);
     }
 

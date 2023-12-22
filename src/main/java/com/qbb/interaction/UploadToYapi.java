@@ -17,6 +17,7 @@ import com.qbb.component.ConfigPersistence;
 import com.qbb.constant.ProjectTypeConstant;
 import com.qbb.constant.YapiConstant;
 import com.qbb.dto.*;
+import com.qbb.dto.wrapper.YapiApiDTOPathProcessor;
 import com.qbb.upload.UploadYapi;
 
 import java.awt.*;
@@ -123,14 +124,16 @@ public class UploadToYapi extends AnAction {
             //获得api 需上传的接口列表 参数对象
             ArrayList<YapiApiDTO> yapiApiDTOS = new BuildJsonForYapi().actionPerformedList(e, attachUpload, returnClass);
             if (yapiApiDTOS != null) {
-                for (YapiApiDTO yapiApiDTO : yapiApiDTOS) {
-                    YapiSaveParam yapiSaveParam = new YapiSaveParam(projectToken, yapiApiDTO.getTitle(), yapiApiDTO.getPath(), yapiApiDTO.getParams(), yapiApiDTO.getRequestBody(), yapiApiDTO.getResponse(), Integer.valueOf(projectId), yapiUrl, true, yapiApiDTO.getMethod(), yapiApiDTO.getDesc(), yapiApiDTO.getHeader());
-                    yapiSaveParam.setReq_body_form(yapiApiDTO.getReq_body_form());
-                    yapiSaveParam.setReq_body_type(yapiApiDTO.getReq_body_type());
-                    yapiSaveParam.setReq_params(yapiApiDTO.getReq_params());
-                    yapiSaveParam.setStatus(yapiApiDTO.getStatus());
-                    if (!Strings.isNullOrEmpty(yapiApiDTO.getMenu())) {
-                        yapiSaveParam.setMenu(yapiApiDTO.getMenu());
+                for (YapiApiDTO apiDTO : yapiApiDTOS) {
+                    String path = YapiApiDTOPathProcessor.getPath(apiDTO);
+                    String title = YapiApiDTOPathProcessor.getTitle(apiDTO);
+                    YapiSaveParam yapiSaveParam = new YapiSaveParam(projectToken, title, path, apiDTO.getParams(), apiDTO.getRequestBody(), apiDTO.getResponse(), Integer.valueOf(projectId), yapiUrl, true, apiDTO.getMethod(), apiDTO.getDesc(), apiDTO.getHeader());
+                    yapiSaveParam.setReq_body_form(apiDTO.getReq_body_form());
+                    yapiSaveParam.setReq_body_type(apiDTO.getReq_body_type());
+                    yapiSaveParam.setReq_params(apiDTO.getReq_params());
+                    yapiSaveParam.setStatus(apiDTO.getStatus());
+                    if (!Strings.isNullOrEmpty(apiDTO.getMenu())) {
+                        yapiSaveParam.setMenu(apiDTO.getMenu());
                     } else {
                         yapiSaveParam.setMenu(YapiConstant.menu);
                     }
