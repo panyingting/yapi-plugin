@@ -1,31 +1,12 @@
 package com.qbb.builder;
 
 import com.google.common.base.Strings;
-import com.google.gson.JsonObject;
-import com.intellij.notification.Notification;
-import com.intellij.notification.NotificationDisplayType;
-import com.intellij.notification.NotificationGroup;
-import com.intellij.notification.NotificationType;
-import com.intellij.notification.Notifications;
+import com.intellij.notification.*;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
-import com.intellij.psi.JavaPsiFacade;
-import com.intellij.psi.PsiAnnotation;
-import com.intellij.psi.PsiAnnotationMemberValue;
-import com.intellij.psi.PsiArrayType;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiEnumConstant;
-import com.intellij.psi.PsiField;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiMethod;
-import com.intellij.psi.PsiNameValuePair;
-import com.intellij.psi.PsiParameter;
-import com.intellij.psi.PsiPrimitiveType;
-import com.intellij.psi.PsiReference;
-import com.intellij.psi.PsiType;
+import com.intellij.psi.*;
 import com.intellij.psi.impl.compiled.ClsFileImpl;
 import com.intellij.psi.impl.source.PsiClassReferenceType;
 import com.intellij.psi.impl.source.PsiJavaFileImpl;
@@ -820,30 +801,30 @@ public class BuildJsonForYapi {
         
         // 如果是基本类型
         if (type instanceof PsiPrimitiveType) {
-            JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("type", Optional.ofNullable(NormalTypes.java2JsonTypes.get(type.getPresentableText())).orElse(type.getPresentableText()));
+            KV<String,Object> childKv = new KV<>();
+            childKv.set("type", Optional.ofNullable(NormalTypes.java2JsonTypes.get(type.getPresentableText())).orElse(type.getPresentableText()));
             if (!Strings.isNullOrEmpty(remark)) {
-                jsonObject.addProperty("description", remark);
+                childKv.set("description", remark);
             }
-            jsonObject.add("mock", NormalTypes.formatMockType(type.getPresentableText()
+            childKv.set("mock", NormalTypes.formatMockType(type.getPresentableText()
                     , PsiAnnotationSearchUtil.getPsiParameterAnnotationParam(field, SwaggerConstants.API_MODEL_PROPERTY, "example")));
-            kv.set(name, jsonObject);
+            kv.set(name, childKv);
         } else {
             //reference Type
             String fieldTypeName = type.getPresentableText();
             //normal Type
             if (NormalTypes.isNormalType(fieldTypeName)) {
-                JsonObject jsonObject = new JsonObject();
-                jsonObject.addProperty("type", Optional.ofNullable(NormalTypes.java2JsonTypes.get(fieldTypeName)).orElse(fieldTypeName));
+                KV<String,Object> childKv = new KV<>();
+                childKv.set("type", Optional.ofNullable(NormalTypes.java2JsonTypes.get(fieldTypeName)).orElse(fieldTypeName));
                 if (!Strings.isNullOrEmpty(remark)) {
-                    jsonObject.addProperty("description", remark);
+                    childKv.set("description", remark);
                 }
-                jsonObject.add("mock", NormalTypes.formatMockType(type.getPresentableText()
+                childKv.set("mock", NormalTypes.formatMockType(type.getPresentableText()
                         , PsiAnnotationSearchUtil.getPsiParameterAnnotationParam(field, SwaggerConstants.API_MODEL_PROPERTY, "example")));
-                kv.set(name, jsonObject);
+                kv.set(name, childKv);
             } else if (!(type instanceof PsiArrayType) && ((PsiClassReferenceType) type).resolve().isEnum()) {
-                JsonObject jsonObject = new JsonObject();
-                jsonObject.addProperty("type", "enum");
+                KV<String,Object> childKv = new KV<>();
+                childKv.set("type", "enum");
                 if (Strings.isNullOrEmpty(remark)) {
                     PsiField[] fields = ((PsiClassReferenceType) type).resolve().getAllFields();
                     List<PsiField> fieldList = Arrays.stream(fields).filter(f -> f instanceof PsiEnumConstant).collect(Collectors.toList());
@@ -856,8 +837,8 @@ public class BuildJsonForYapi {
                     }
                     remark = remarkBuilder.toString();
                 }
-                jsonObject.addProperty("description", remark);
-                kv.set(name, jsonObject);
+                childKv.set("description", remark);
+                kv.set(name, childKv);
             } else if (NormalTypes.genericList.contains(fieldTypeName)) {
                 if (childType != null) {
                     String child = childType[index].split(">")[0];

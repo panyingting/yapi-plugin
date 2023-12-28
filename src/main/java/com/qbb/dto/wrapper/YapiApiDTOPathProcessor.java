@@ -13,11 +13,13 @@ public class YapiApiDTOPathProcessor {
 
     private static final String VERSION_SUFFIX = "_V002";
 
+    private static final String VERSION_DESC_SUFFIX = "¡¾app2¡¿";
+
     public static String getPath(YapiApiDTO yapiApiDTO) {
         return Optional.ofNullable(yapiApiDTO.getPath()).orElse("") + VERSION_SUFFIX;
     }
 
     public static String getTitle(YapiApiDTO yapiApiDTO) {
-        return Optional.ofNullable(yapiApiDTO.getTitle()).orElse("") + VERSION_SUFFIX;
+        return Optional.ofNullable(yapiApiDTO.getTitle()).orElse("") + VERSION_DESC_SUFFIX;
     }
 }

@@ -1,5 +1,6 @@
 package com.qbb.component;
 
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.components.State;
@@ -17,7 +18,7 @@ import java.util.List;
  * @Description: ≈‰÷√≥÷æ√ªØ
  * @date 2020/12/25
  */
-@State(name = "yapiUploads", storages = {@Storage(value = "$APP_CONFIG$/yapiUploads.xml")})
+@State(name = "yapiUploads", storages = {@Storage(value = "yapiUploads.xml")})
 public class ConfigPersistence implements PersistentStateComponent<List<ConfigDTO>> {
 
 
@@ -32,7 +33,7 @@ public class ConfigPersistence implements PersistentStateComponent<List<ConfigDT
     private List<ConfigDTO> configs;
 
     public static ConfigPersistence getInstance(){
-        return ServiceManager.getService(ConfigPersistence.class);
+        return ApplicationManager.getApplication().getService(ConfigPersistence.class);
     }
 
 
