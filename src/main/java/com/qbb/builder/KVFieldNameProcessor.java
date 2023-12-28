@@ -3,7 +3,6 @@ package com.qbb.builder;
 import com.qbb.builder.encoding.AppTwoFieldConvertStrategy;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,28 +13,35 @@ import java.util.Set;
  */
 public class KVFieldNameProcessor {
 
-    private AppTwoFieldConvertStrategy appTwoFieldConvertStrategy = new AppTwoFieldConvertStrategy();
+    private final AppTwoFieldConvertStrategy appTwoFieldConvertStrategy = new AppTwoFieldConvertStrategy();
 
-    private final String properties = "properties";
+    private static final String properties = "properties";
 
-    private final String arrayProperties = "items";
+    private static final String arrayProperties = "items";
 
-    private final String description = "description";
+    private static final String description = "description";
 
-    private final String type = "type";
-    private final String mock = "mock";
+    private static final String type = "type";
+    private static final String mock = "mock";
+
+    KVFieldNameOutputProcessor outputProcessor = new KVFieldNameOutputProcessor();
 
 
     public void process(KV kv) {
+
+        outputProcessor.openFileAndRead();
+
         if (Objects.nonNull(kv)) {
             Object val = kv.get(properties);
             if (val instanceof KV) {
                 doProcessProperties((KV)val);
             }
         }
+
+        outputProcessor.writeToFile();
     }
 
-    private void process(KV kv, String originFieldName) {
+    private void process(KV kv, String originFieldName, String newFieldName) {
         if (Objects.nonNull(kv)) {
 
             KV kvForProperties = kv;
@@ -49,7 +55,9 @@ public class KVFieldNameProcessor {
                 doProcessProperties((KV)val);
             }
             if (kv.containsKey(description) || (kv.containsKey(type) || kv.containsKey(mock))) {
-                kv.set(description, kv.getOrDefault(description, "无描述") + String.format("【%s】", originFieldName));
+                String fieldDesc = String.valueOf(kv.getOrDefault(description, "无描述"));
+                kv.set(description, fieldDesc + String.format("【%s】", originFieldName));
+                outputProcessor.addField(originFieldName, newFieldName, fieldDesc);
             }
         }
     }
@@ -60,17 +68,22 @@ public class KVFieldNameProcessor {
             for (Object key : keySet) {
                 String fieldName = key.toString();
                 Object value = kv.get(key);
-                processValue(value, fieldName);
                 String convertName = appTwoFieldConvertStrategy.encoding(fieldName);
+
+                // 对值进行处理
+                processValue(value, fieldName, convertName);
+
                 kv.set(convertName, value);
                 kv.remove(key);
             }
         }
     }
 
-    private void processValue(Object value, String originFieldName) {
+    private void processValue(Object value, String originFieldName, String newFieldName) {
         if (value instanceof KV) {
-            process((KV)value, originFieldName);
+            process((KV)value, originFieldName, newFieldName);
         }
     }
+
+
 }
