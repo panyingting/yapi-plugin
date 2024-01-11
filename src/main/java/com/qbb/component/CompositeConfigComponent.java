@@ -70,7 +70,11 @@ public class CompositeConfigComponent {
                 projectId = projectConfig.split("projectId\">")[1].split("</")[0];
                 yapiUrl = projectConfig.split("yapiUrl\">")[1].split("</")[0];
                 projectType = projectConfig.split("projectType\">")[1].split("</")[0];
-                versionFieldMapFilePath = projectConfig.split("versionFieldMapFilePath\">")[1].split("</")[0];
+
+                if (projectConfig.split("versionFieldMapFilePath\">").length > 1) {
+                    versionFieldMapFilePath = projectConfig.split("versionFieldMapFilePath\">")[1].split("</")[0];
+                }
+
                 if (projectConfig.split("returnClass\">").length > 1) {
                     returnClass = projectConfig.split("returnClass\">")[1].split("</")[0];
                 }
